@@ -1,6 +1,6 @@
 const request = require("request-promise");
 
-const obtieneSellerNickname = (sellerId) =>{
+const obtenerSellerNickname = (sellerId) =>{
 	let options = {
 		url: `https://api.mercadolibre.com/users/${sellerId}`,
         method: "GET",
@@ -12,8 +12,8 @@ const obtieneSellerNickname = (sellerId) =>{
 	return request(options);
 }
 
-const imprimeSellerNickname = (sellerId) => obtieneSellerNickname(sellerId).then(respuesta => {
+const imprimirSellerNickname = (sellerId) => obtenerSellerNickname(sellerId).then(respuesta => {
 	console.log("el nickname del user es: "+ respuesta.nickname);
 })
 
-imprimeSellerNickname(138427624);
+imprimirSellerNickname(138427624);
