@@ -1,6 +1,6 @@
 const request = require("request-promise");
 
-const ejercicio2 = (item) =>{
+const obtenerSellerIdConItemId = (item) =>{
     let options = {
         url: `https://api.mercadolibre.com/items/${item}`,
         method: "GET",
@@ -12,11 +12,11 @@ const ejercicio2 = (item) =>{
     return request(options);
 }
 
-ejercicio2("MLA1132828285").then(respuesta => {
+obtenerSellerIdConItemId("MLA1132828285").then(respuesta => {
     console.log({
         "idVendedor": respuesta.seller_id,
         "idItem":respuesta.id
-        /*"idItem2": ejercicio2("MLA1132828285")._rp_options.url.split("/")[4]*/
+        /*"idItem2": obtenerSellerIdConItemId("MLA1132828285")._rp_options.url.split("/")[4]*/
     })
 })
 
