@@ -13,7 +13,7 @@ const obtenerSeller = (sellerId) =>{
 }
 
 const obtenerSellerNickname = (sellerId) => {
-    obtenerSeller(sellerId).then(seller => {
+    return obtenerSeller(sellerId).then(seller => {
         return seller.nickname
     })
 }
