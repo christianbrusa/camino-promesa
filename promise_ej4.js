@@ -5,7 +5,7 @@ const obtenerItem = (itemId) => {
         url: `https://api.mercadolibre.com/items/${itemId}`,
         method: "GET",
         headers: {
-            Authorization: "Bearer APP_USR-2010260036191127-063015-d31c3b675cc9369b195af8a057f7a65d-138427624"
+            Authorization: "Bearer APP_USR-2010260036191127-070822-89376ce593ee1e880166060d4eafffba-138427624"
         },
         json: true
     }
@@ -17,22 +17,22 @@ const obtenerSeller = (sellerId) => {
         url: `https://api.mercadolibre.com/users/${sellerId}`,
         method: "GET",
         headers: {
-            Authorization: "Bearer APP_USR-2010260036191127-063015-d31c3b675cc9369b195af8a057f7a65d-138427624"
+            Authorization: "Bearer APP_USR-2010260036191127-070822-89376ce593ee1e880166060d4eafffba-138427624"
         },
         json: true
     }
     return request(options);
 }
 
+const obtenerSellerDeItem = (itemId) => {
+    return obtenerItem(itemId)
+    .then(item => obtenerSeller(item.seller_id))
+}
 
 const obtenerSellerNickname = (itemId) => {
-    obtenerItem(itemId).then(item => {
-        obtenerSeller(item.seller_id).then(seller => {
-            return {
-                SellerNickname: seller.nickname
-            }
-        }).tap(resultado => console.log(resultado.SellerNickname));
-    })
+    return obtenerSellerDeItem(itemId)
+    .then(seller => seller.nickname)
+    .tap(nickname => console.log(nickname))
 }
 
 obtenerSellerNickname("MLA1132828285");
