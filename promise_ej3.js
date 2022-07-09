@@ -13,13 +13,11 @@ const obtenerSeller = (sellerId) =>{
 }
 
 const obtenerSellerNickname = (sellerId) => {
-    return obtenerSeller(sellerId).then(seller => {
-        return seller.nickname
-    })
+    return obtenerSeller(sellerId)
+    .then(seller => seller.nickname)
 }
 
-const imprimirSellerNickname = (sellerId) => obtenerSellerNickname(sellerId).then(nickname => {
-    console.log("el nickname del user es: " + nickname);
-})
+const imprimirSellerNickname = (sellerId) => obtenerSellerNickname(sellerId)
+    .then(nickname => console.log("el nickname del user es: " + nickname));
 
 imprimirSellerNickname(138427624);
