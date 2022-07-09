@@ -1,23 +1,11 @@
 const request = require("request-promise");
 
-const obtenerItem = (itemId) => {
+const obtenerAPI = (resource, id) => {
     let options = {
-        url: `https://api.mercadolibre.com/items/${itemId}`,
+        url: `https://api.mercadolibre.com/${resource}/${id}`,
         method: "GET",
         headers: {
-            Authorization: "Bearer APP_USR-2010260036191127-070822-89376ce593ee1e880166060d4eafffba-138427624"
-        },
-        json: true
-    }
-    return request(options);
-}
-
-const obtenerSeller = (sellerId) => {
-    let options = {
-        url: `https://api.mercadolibre.com/users/${sellerId}`,
-        method: "GET",
-        headers: {
-            Authorization: "Bearer APP_USR-2010260036191127-070822-89376ce593ee1e880166060d4eafffba-138427624"
+            Authorization: "Bearer APP_USR-2010260036191127-070916-86513ef013cb9fcec5c8cb3508c9d9eb-138427624"
         },
         json: true
     }
@@ -25,8 +13,8 @@ const obtenerSeller = (sellerId) => {
 }
 
 const obtenerSellerDeItem = (itemId) => {
-    return obtenerItem(itemId)
-    .then(item => obtenerSeller(item.seller_id))
+    return obtenerAPI("items", itemId)
+    .then(item => obtenerAPI("users", item.seller_id))
 }
 
 const obtenerSellerNickname = (itemId) => {
